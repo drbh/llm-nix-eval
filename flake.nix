@@ -14,6 +14,9 @@
       # it never needs import-from-derivation; `nix build` reproduces that file.
       lib = import ./qwen.nix { };
 
+      # nix eval --extra-experimental-features wasm-builtin --json .#example
+      example = import ./example.nix;
+
       packages = forAllSystems (pkgs: {
         default = pkgs.rustPlatform.buildRustPackage {
           pname = "qwen-wasm";
