@@ -1,0 +1,8 @@
+[target.wasm32-unknown-unknown]
+# --allow-undefined: nix-wasm-rust declares host imports without a
+# wasm_import_module, and newer rustc no longer passes this flag by default.
+rustflags = [
+  "-C", "target-feature=+simd128",
+  "-C", "link-arg=--allow-undefined",
+  "--cfg", "getrandom_backend=\"custom\"",
+]

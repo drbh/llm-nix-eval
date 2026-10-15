@@ -1,0 +1,15 @@
+[package]
+name = "qwen-wasm"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+nix-wasm-rust = { git = "https://github.com/DeterminateSystems/nix-wasm-rust", rev = "b165eee8be4c5805a73e55a8541d27fce6a6df00" }
+candle-core = { version = "0.11.0", default-features = false }
+candle-transformers = { version = "0.11.0", default-features = false }
+candle-nn = { version = "0.11.0", default-features = false }
+tokenizers = { version = "0.22", default-features = false, features = ["unstable_wasm"] }
+getrandom = "0.3"

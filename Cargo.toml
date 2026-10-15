@@ -1,0 +1,17 @@
+[workspace]
+members = ["qwen-wasm"]
+resolver = "2"
+
+[profile.release]
+lto = true
+opt-level = 3
+codegen-units = 1
+strip = true
+panic = "abort"
+
+# candle-core 0.11.0 does not build for wasm32 + simd128. fixed upstream in
+# https://github.com/huggingface/candle/pull/3904, drop this once it ships.
+[patch.crates-io]
+candle-core = { git = "https://github.com/huggingface/candle", rev = "12bb5d1f6350f4ea9827d9086f213feec1f0af6a" }
+candle-nn = { git = "https://github.com/huggingface/candle", rev = "12bb5d1f6350f4ea9827d9086f213feec1f0af6a" }
+candle-transformers = { git = "https://github.com/huggingface/candle", rev = "12bb5d1f6350f4ea9827d9086f213feec1f0af6a" }
